@@ -16,6 +16,7 @@ app.get("/", (req, res) => {
 
 app.post("/beneficiario", (req, res) => {
   const benData = req.body;
+  //console.log
 
   //console.log(benData.id_1);
   inserBen(benData.paren, benData.id_1, benData.id_2);

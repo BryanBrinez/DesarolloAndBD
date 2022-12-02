@@ -53,16 +53,18 @@ async function inserBen(ben, id1, id2) {
   }
 }
 
+
+//Ingreso para admin
 app.post("/lAdmin", (req, res) => {
   const benData = req.body;
   alert(benData);
 
   //console.log(benData.id_1);
-lAdmin(benData.user,benData.password);
+  lAdmin(benData.user, benData.password);
   res.send('Hello World!');
 });
 
-async function lAdmin (login,password){
+async function lAdmin(login, password) {
   try {
     const client = new Client({
       user: 'postgres',
@@ -73,11 +75,84 @@ async function lAdmin (login,password){
     await client.connect();
     console.log(login);
 
-    const queryToInsert = "INSERT INTO public.\"LoginAdministrador\" VALUES ('" + login +"','" + password +"')";
+    const queryToInsert = "INSERT INTO public.\"LoginAdministrador\" VALUES ('" + login + "','" + password + "')";
 
 
     const res = await client.query(queryToInsert);
-    
+
+
+    console.log("res.rows"); // Hello world!
+    await client.end();
+  }
+  catch (error) {
+    console.log(error);
+
+  }
+}
+
+//Ingreso para Afiliado
+app.post("/lAfiliado", (req, res) => {
+  const benData = req.body;
+  alert(benData);
+
+  //console.log(benData.id_1);
+  lAfiliado(benData.user, benData.password);
+  res.send('Hello World!');
+});
+
+async function lAfiliado(login, password) {
+  try {
+    const client = new Client({
+      user: 'postgres',
+      host: 'localhost',
+      password: '123456789',
+      database: 'healthsoft'
+    });
+    await client.connect();
+    console.log(login);
+
+    const queryToInsert = "INSERT INTO public.\"LoginAdministrador\" VALUES ('" + login + "','" + password + "')";
+
+
+    const res = await client.query(queryToInsert);
+
+
+    console.log("res.rows"); // Hello world!
+    await client.end();
+  }
+  catch (error) {
+    console.log(error);
+
+  }
+}
+
+
+//Ingreso para Banco
+app.post("/lBanco", (req, res) => {
+  const benData = req.body;
+  alert(benData);
+
+  //console.log(benData.id_1);
+  lBanco(benData.user, benData.password);
+  res.send('Hello World!');
+});
+
+async function lBanco(login, password) {
+  try {
+    const client = new Client({
+      user: 'postgres',
+      host: 'localhost',
+      password: '123456789',
+      database: 'healthsoft'
+    });
+    await client.connect();
+    console.log(login);
+
+    const queryToInsert = "INSERT INTO public.\"LoginAdministrador\" VALUES ('" + login + "','" + password + "')";
+
+
+    const res = await client.query(queryToInsert);
+
 
     console.log("res.rows"); // Hello world!
     await client.end();

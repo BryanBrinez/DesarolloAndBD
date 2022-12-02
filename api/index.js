@@ -23,43 +23,9 @@ app.post("/beneficiario", (req, res) => {
   res.send('Hello World!');
 });
 
-app.post("/lAdmin", (req, res) => {
-  const benData = req.body;
-
-  //console.log(benData.id_1);
-lAdmin(benData.user,benData.password);
-  res.send('Hello World!');
-});
-
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`);
 });
-
-async function lAdmin (login,password){
-  try {
-    const client = new Client({
-      user: 'postgres',
-      host: 'localhost',
-      password: 'l1968207',
-      database: 'HealthSoft'
-    });
-    await client.connect();
-    console.log(login);
-
-    const queryToInsert = "INSERT INTO public.\"LoginAdministrador\" VALUES ('" + login +"','" + password +"')";
-
-
-    const res = await client.query(queryToInsert);
-    
-
-    console.log("res.rows"); // Hello world!
-    await client.end();
-  }
-  catch (error) {
-    console.log(error);
-
-  }
-}
 
 
 async function inserBen(ben, id1, id2) {
